@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSFiddle 6o82edfb</title>
+
+  <style>
+     {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #080e0a;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* MENU */
+
+header {
+    background: rgba(8, 14, 10, 0.95);
+    padding: 22px 8%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #35d05b33;
+    backdrop-filter: blur(12px);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    color: #35f078;
+    letter-spacing: 3px;
+    font-size: 27px;
+    font-weight: 900;
+    text-shadow: 0 0 15px #35d05b55;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #eeeeee;
+    font-weight: bold;
+    transition: 0.3s;
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #35f078;
+    bottom: -7px;
+    left: 0;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #35f078;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* PORTADA */
+
+.hero {
+    min-height: 620px;
+    background:
+        linear-gradient(90deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),
+        url("https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600") center/cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 7vw, 75px);
+    color: #35f078;
+    margin-bottom: 25px;
+    font-weight: 900;
+    text-shadow: 0 0 25px #35d05b66;
+    animation: aparecer 1s ease;
+}
+
+.hero p {
+    font-size: 23px;
+    margin-bottom: 40px;
+    color: #eeeeee;
+}
+
+.boton {
+    display: inline-block;
+    background: #35f078;
+    color: #07130b;
+    padding: 17px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 900;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    box-shadow: 0 0 20px #35d05b55;
+}
+
+.boton:hover {
+    background: white;
+    transform: scale(1.08);
+    box-shadow: 0 0 30px #35f078;
+}
+
+/* TITULOS */
+
+h2 {
+    color: #35f078;
+    font-size: 34px;
+    margin-bottom: 35px;
+    font-weight: 900;
+}
+
+/* HISTORIA */
+
+.historia {
+    padding: 100px 10%;
+    text-align: center;
+}
+
+.historia-contenido {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    text-align: left;
+}
+
+.historia-contenido img {
+    width: 50%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px #000;
+    transition: 0.4s;
+}
+
+.historia-contenido img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px #35d05b55;
+}
+
+.historia-contenido p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #cbd5ce;
+    margin-bottom: 18px;
+}
+
+/* EQUIPOS */
+
+.equipos {
+    padding: 100px 10%;
+    background: linear-gradient(135deg, #101e14, #192d20);
+    text-align: center;
+}
+
+.subtitulo {
+    margin-bottom: 45px;
+    color: #b7c5ba;
+    font-size: 17px;
+}
+
+.tarjetas {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.tarjeta {
+    background: #1b2c20;
+    width: 290px;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.4s;
+    border: 1px solid #35d05b33;
+    box-shadow: 0 8px 25px #0005;
+}
+
+.tarjeta:hover {
+    transform: translateY(-12px);
+    border-color: #35f078;
+    box-shadow: 0 15px 35px #0009;
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.tarjeta:hover img {
+    transform: scale(1.08);
+}
+
+.tarjeta h3 {
+    color: #35f078;
+    margin: 22px;
+    font-size: 22px;
+}
+
+.tarjeta p {
+    padding: 0 22px 28px;
+    line-height: 1.8;
+    color: #c5d1c8;
+    font-size: 15px;
+}
+
+/* CURIOSIDADES */
+
+.curiosidades {
+    padding: 100px 10%;
+    text-align: center;
+    background:
+        linear-gradient(#080e0ae8, #080e0af2),
+        url("https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1500") center/cover;
+}
+
+.datos {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.dato {
+    background: rgba(38, 53, 42, 0.8);
+    padding: 40px 25px;
+    width: 230px;
+    border-radius: 18px;
+    transition: 0.4s;
+    border: 1px solid #35d05b55;
+    backdrop-filter: blur(8px);
+}
+
+.dato:hover {
+    background: #35f078;
+    color: #07130b;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px #35d05b55;
+}
+
+.dato h3 {
+    font-size: 55px;
+    color: #35f078;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+.dato:hover h3 {
+    color: #07130b;
+}
+
+.dato p {
+    line-height: 1.6;
+}
+
+/* CONTACTO */
+
+.contacto {
+    background: #111e15;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.contacto p {
+    margin-bottom: 35px;
+    color: #cbd5ce;
+}
+
+form {
+    max-width: 550px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+input, textarea {
+    padding: 18px;
+    border: 1px solid #34513d;
+    border-radius: 10px;
+    background: #1b2c20;
+    color: white;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    transition: 0.3s;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: #35f078;
+    box-shadow: 0 0 12px #35d05b55;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #a4b4a8;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    padding: 18px;
+    background: #35f078;
+    border: none;
+    border-radius: 10px;
+    color: #07130b;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: white;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px #35d05b55;
+}
+
+/* FOOTER */
+
+footer {
+    background: #050a07;
+    text-align: center;
+    padding: 45px 20px;
+    line-height: 2;
+    color: #aab7ad;
+    border-top: 1px solid #35d05b33;
+}
+
+footer h3 {
+    color: #35f078;
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+/* ANIMACIONES */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOVILES */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 20px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .hero {
+        min-height: 500px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+
+    .historia,
+    .equipos,
+    .curiosidades {
+        padding: 65px 7%;
+    }
+
+    .historia-contenido {
+        flex-direction: column;
+    }
+
+    .historia-contenido img {
+        width: 100%;
+        height: 250px;
+    }
+
+    .tarjetas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tarjeta {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .datos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dato {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+}
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fútbol Total | La pasión del fútbol</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #080f0c;
+  color: white;
+}
+
+/* MENU */
+
+header {
+  background: rgba(5, 15, 10, 0.95);
+  padding: 20px 8%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #1c3929;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+nav h2 {
+  color: #62ff91;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: #62ff91;
+}
+
+/* PORTADA */
+
+.hero {
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  padding: 80px 10%;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.25)),
+    url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1800')
+    center/cover;
+}
+
+.hero-content {
+  max-width: 750px;
+}
+
+.hero h1 {
+  font-size: clamp(45px, 7vw, 85px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 25px;
+}
+
+.hero h1 span {
+  color: #62ff91;
+}
+
+.hero p {
+  font-size: 21px;
+  color: #ddd;
+  margin-bottom: 35px;
+}
+
+.boton {
+  display: inline-block;
+  background: #62ff91;
+  color: #07130b;
+  padding: 17px 35px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 900;
+  transition: .3s;
+}
+
+.boton:hover {
+  background: white;
+  transform: translateY(-4px);
+}
+
+/* TITULOS */
+
+section h2 {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+section h2 span {
+  color: #62ff91;
+}
+
+/* HISTORIA */
+
+.historia {
+  padding: 90px 10%;
+}
+
+.historia-contenido {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 45px;
+  margin-top: 45px;
+}
+
+.historia-contenido img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px #000;
+}
+
+.historia-contenido p {
+  color: #c5d0c9;
+  line-height: 1.9;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+/* EQUIPOS */
+
+.equipos {
+  background: #101b14;
+  padding: 90px 8%;
+}
+
+.subtitulo {
+  text-align: center;
+  color: #aab8ae;
+  margin-bottom: 45px;
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.tarjeta {
+  background: #19271e;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: .35s;
+  border: 1px solid #293d30;
+}
+
+.tarjeta:hover {
+  transform: translateY(-10px);
+  border-color: #62ff91;
+  box-shadow: 0 15px 35px #0008;
+}
+
+.tarjeta img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.tarjeta h3 {
+  padding: 22px 22px 10px;
+  font-size: 21px;
+  color: #62ff91;
+}
+
+.tarjeta p {
+  padding: 0 22px 28px;
+  color: #bdc9c0;
+  line-height: 1.8;
+}
+
+/* CURIOSIDADES */
+
+.curiosidades {
+  padding: 90px 8%;
+  text-align: center;
+  background:
+    linear-gradient(#07130de8, #07130df0),
+    url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1500')
+    center/cover;
+}
+
+.datos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 45px;
+}
+
+.dato {
+  padding: 35px 20px;
+  border-radius: 15px;
+  background: #ffffff12;
+  border: 1px solid #62ff9155;
+  backdrop-filter: blur(8px);
+  transition: .3s;
+}
+
+.dato:hover {
+  background: #62ff9120;
+  transform: scale(1.04);
+}
+
+.dato h3 {
+  font-size: 55px;
+  color: #62ff91;
+  margin-bottom: 12px;
+}
+
+.dato p {
+  color: #ddd;
+}
+
+/* CONTACTO */
+
+.contacto {
+  padding: 90px 20px;
+  text-align: center;
+}
+
+.contacto > p {
+  color: #aebbb1;
+  margin: 15px 0 35px;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 17px;
+  background: #142019;
+  border: 1px solid #34513d;
+  border-radius: 9px;
+  color: white;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: #62ff91;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  padding: 17px;
+  border: none;
+  background: #62ff91;
+  color: #07130b;
+  font-size: 15px;
+  font-weight: 900;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+button:hover {
+  background: white;
+  transform: translateY(-3px);
+}
+
+/* FOOTER */
+
+footer {
+  background: #030906;
+  text-align: center;
+  padding: 45px 20px;
+  border-top: 1px solid #1c3929;
+}
+
+footer h3 {
+  font-size: 27px;
+  color: #62ff91;
+  margin-bottom: 15px;
+}
+
+footer p {
+  color: #87968b;
+  margin: 9px;
+  font-size: 13px;
+}
+
+/* ANIMACIONES */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content {
+  animation: aparecer 1s ease;
+}
+
+/* MOVILES */
+
+@media (max-width: 800px) {
+  header {
+    padding: 20px 5%;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  nav ul {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .hero {
+    min-height: 520px;
+    padding: 60px 7%;
+  }
+
+  .historia-contenido {
+    grid-template-columns: 1fr;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .datos {
+    grid-template-columns: 1fr;
+  }
+
+  section h2 {
+    font-size: 28px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<h2>⚽ FÚTBOL TOTAL</h2>
+<ul>
+<li><a href="#inicio">Inicio</a></li>
+<li><a href="#historia">Historia</a></li>
+<li><a href="#equipos">Equipos</a></li>
+<li><a href="#contacto">Contacto</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+<div class="hero-content">
+<h1>EL FÚTBOL ES <span>PASIÓN</span></h1>
+<p>Mucho más que un deporte. Una forma de vivir.</p>
+<a href="#historia" class="boton">DESCUBRE MÁS ⚽</a>
+</div>
+</section>
+
+<section class="historia" id="historia">
+<h2>¿QUÉ ES EL <span>FÚTBOL?</span></h2>
+
+<div class="historia-contenido">
+<img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=900" alt="Estadio de fútbol">
+
+<div>
+<p>El fútbol es uno de los deportes más populares del mundo. Se juega entre dos equipos de once jugadores y el objetivo es marcar más goles que el equipo contrario.</p>
+
+<p>Su historia moderna comenzó en Inglaterra durante el siglo XIX. Actualmente millones de personas practican y siguen este deporte en todos los continentes.</p>
+
+<p>El fútbol representa esfuerzo, trabajo en equipo, compañerismo y pasión.</p>
+</div>
+</div>
+</section>
+
+<section class="equipos" id="equipos">
+<h2>LOS GRANDES <span>EQUIPOS</span></h2>
+<p class="subtitulo">Algunos de los clubes más conocidos del fútbol mundial.</p>
+
+<div class="tarjetas">
+
+<article class="tarjeta">
+<img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600" alt="Estadio de fútbol">
+<h3>⚪ Real Madrid</h3>
+<p>Uno de los clubes más laureados del fútbol mundial. Destaca por su historia y sus grandes éxitos europeos.</p>
+</article>
+
+<article class="tarjeta">
+<img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600" alt="Campo de fútbol">
+<h3>🔵 FC Barcelona</h3>
+<p>Club conocido por su estilo de juego, su cantera y su lema: más que un club.</p>
+</article>
+
+<article class="tarjeta">
+<img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600" alt="Balón de fútbol">
+<h3>🔴 Manchester United</h3>
+<p>Histórico equipo inglés con millones de seguidores en todo el mundo.</p>
+</article>
+
+</div>
+</section>
+
+<section class="curiosidades">
+<h2>¿SABÍAS <span>QUE...?</span></h2>
+
+<div class="datos">
+<div class="dato">
+<h3>11</h3>
+<p>Jugadores por equipo en el campo.</p>
+</div>
+
+<div class="dato">
+<h3>90</h3>
+<p>Minutos de duración habitual de un partido.</p>
+</div>
+
+<div class="dato">
+<h3>2</h3>
+<p>Partes de 45 minutos cada una.</p>
+</div>
+</div>
+</section>
+
+<section class="contacto" id="contacto">
+<h2>CONTACTA CON <span>NOSOTROS</span></h2>
+<p>¿Te encanta el fútbol? ¡Queremos conocer tu opinión!</p>
+
+<form>
+<input type="text" placeholder="Tu nombre" required>
+<input type="email" placeholder="Tu correo electrónico" required>
+<textarea placeholder="Escribe tu mensaje..." rows="5" required></textarea>
+<button type="submit">ENVIAR MENSAJE ⚽</button>
+</form>
+</section>
+
+</main>
+
+<footer>
+<h3>⚽ FÚTBOL TOTAL</h3>
+<p>El deporte que une al mundo.</p>
+<p>Proyecto escolar realizado con HTML y CSS.</p>
+<p>© 2026 - Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
+
+  <script>
+    
+  </script>
+</body>
+</html>
